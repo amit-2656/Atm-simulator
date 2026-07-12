@@ -1,2 +1,12 @@
-# Atm-simulator
-**Description (under 250 characters):**  ATM Simulator is a Java-based banking application that simulates core ATM operations such as user authentication, balance inquiry, cash withdrawal, deposit, PIN change, and transaction history using a simple and interactive console interface.
+## HTML + CSS + JavaScript
+
+This is a sample project to demonstrate the use of HTML, CSS and JavaScript. Start modefy the index.html, styles.css & script.js files to see the changes.
+
+## How to run
+
+1. Run the follwing command in your terminal:
+```bash
+live-server --no-browser
+```
+
+2. Refresh the URL in simple browser to see the output
