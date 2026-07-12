@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATM Simulator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #2b5876, #4e4376);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .atm-container {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 30px;
+    width: 320px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    text-align: center;
+  }
+  input, button {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+  }
+  button {
+    background-color: #00c3ff;
+    color: white;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #0078aa;
+  }
+  .hidden {
+    display: none;
+  }
+</style>
+</head>
+<body>
+<div class="atm-container">
+  <h2>🏧 ATM Simulator</h2>
+  <div id="login-screen">
+    <p>Enter your PIN:</p>
+    <input type="password" id="pinInput" placeholder="Enter PIN">
+    <button onclick="checkPIN()">Login</button>
+    <p id="loginMsg"></p>
+  </div>
+
+  <div id="menu-screen" class="hidden">
+    <p id="balance">Balance: ₹5000</p>
+    <button onclick="checkBalance()">Check Balance</button>
+    <button onclick="deposit()">Deposit Money</button>
+    <button onclick="withdraw()">Withdraw Money</button>
+    <button onclick="logout()">Exit</button>
+    <p id="msg"></p>
+  </div>
+</div>
+
+<script>
+  let correctPIN = "1234";
+  let balance = 5000;
+
+  function checkPIN() {
+    const pin = document.getElementById("pinInput").value;
+    if (pin === correctPIN) {
+      document.getElementById("login-screen").classList.add("hidden");
+      document.getElementById("menu-screen").classList.remove("hidden");
+    } else {
+      document.getElementById("loginMsg").textContent = "❌ Invalid PIN!";
+    }
+  }
+
+  function checkBalance() {
+    document.getElementById("msg").textContent = "Your current balance is ₹" + balance;
+  }
+
+  function deposit() {
+    const amount = prompt("Enter amount to deposit:");
+    if (amount && amount > 0) {
+      balance += parseFloat(amount);
+      document.getElementById("msg").textContent = "Deposited ₹" + amount + ". New balance: ₹" + balance;
+    } else {
+      alert("Invalid amount!");
+    }
+  }
+
+  function withdraw() {
+    const amount = prompt("Enter amount to withdraw:");
+    if (amount && amount > 0 && amount <= balance) {
+      balance -= parseFloat(amount);
+      document.getElementById("msg").textContent = "Withdrawn ₹" + amount + ". New balance: ₹" + balance;
+    } else {
+      alert("Invalid or insufficient funds!");
+    }
+  }
+
+  function logout() {
+    alert("Thank you for using the ATM!");
+    location.reload();
+  }
+</script>
+</body>
+</html>
